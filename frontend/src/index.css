@@ -1,0 +1,44 @@
+body {
+  background-color: lightblue;
+}
+
+div {
+  text-align: left;
+  max-width: 500px;
+  margin: auto;
+  font-size: 20px;
+  /*border: 2px solid green*/
+}
+
+h1 {
+  color: green;
+  font-size: 60px;
+}
+
+.item {
+  max-width: 500px;
+  margin: auto;
+  border: 2px solid green
+}
+
+.itemList {
+  padding-top: 30px;
+}
+
+.item:hover {
+  background-color: lightgray
+}
+
+.itemLink {
+  color: black;
+  text-decoration: none
+}
+
+.haku {
+  font-size: 30px;
+}
+/*
+.itemLink:hover {
+  background-color: red;
+}
+*/

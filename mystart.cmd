@@ -1,0 +1,1 @@
+start powershell -Command "cd frontend ; npm start" & npm run watch
