@@ -371,6 +371,8 @@ class App extends React.Component {
               if (items.length > 0) {
                 return (
                   <div>
+                    <br/>
+                    <CategoryMenu />
                     <OneItem item={currentlyViewedItem} lisaaOstoskoriin={this.lisaaOstoskoriin}/>
                   </div>
                 )
