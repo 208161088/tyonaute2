@@ -35,7 +35,6 @@ const order = async (newObject) => {
   return response.data
 }
 
-//const remove = async (newObject) => {
 const remove = async () => {
   const config = {
     headers: { 'Authorization': token }

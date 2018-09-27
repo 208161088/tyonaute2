@@ -12,7 +12,6 @@ const Ostoskori = ({ ostoskori, poistaOstoskorista, tilaa, history, notification
             <Item item={item}/>
             <button onClick={() => poistaOstoskorista(index)}>poista</button>
           </div>
-          
         )
       })}
       <br/>

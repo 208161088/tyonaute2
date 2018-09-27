@@ -17,7 +17,6 @@ const checkToken = (request) => {
     const decodedToken = jwt.verify(token, process.env.SECRET)
     return decodedToken
   } catch (exception) {
-    console.log('token missing or invalid')
     return null
   }
 }

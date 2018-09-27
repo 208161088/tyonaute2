@@ -7,7 +7,6 @@ div {
   max-width: 500px;
   margin: auto;
   font-size: 20px;
-  /*border: 2px solid green*/
 }
 
 h1 {
@@ -37,8 +36,3 @@ h1 {
 .haku {
   font-size: 30px;
 }
-/*
-.itemLink:hover {
-  background-color: red;
-}
-*/

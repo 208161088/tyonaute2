@@ -3,21 +3,14 @@ import './index.css'
 import Menu from './components/Menu'
 import CategoryMenu from './components/CategoryMenu'
 import Category from './components/Category'
-//import ItemForm from './components/ItemForm'
 import LoginForm from './components/LoginForm'
-
 import ItemList from './components/ItemList'
 import Ostoskori from './components/Ostoskori'
-//import UserList from './components/UserList'
 import OneItem from './components/OneItem'
 import User from './components/User'
-//import OneUser from './components/OneUser'
-//import Togglable from './components/Togglable'
 import itemService from './services/items'
 import userService from './services/users'
 import loginService from './services/login'
-//import registerService from './services/register'
-//import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 class App extends React.Component {
   constructor(props) {
@@ -31,7 +24,6 @@ class App extends React.Component {
       address: '',
       user: null,
       ostoskori: [],
-      //ostoskoriId: 0,
       currentlyViewedItem: '',
       haku: '',
       fromTilaa: false,
@@ -52,9 +44,6 @@ class App extends React.Component {
     const loggedUserJSON = window.localStorage.getItem('loggedItemAppUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
-      if (!user.token) {
-        console.log('componentDidMount token ERROR', user)
-      }
       this.setState({ user })
       userService.setToken(user.token)
     }
@@ -254,38 +243,7 @@ class App extends React.Component {
       this.notification('tilattu')
     }
   }
-/*
-  clear = () =>{
-    console.log('CLEAR')
-    window.localStorage.clear()
-    this.setState({ostoskori: [], user: null})
-  }
-*/
   render() {
-    
-    //console.log('render')
-    //console.log('user',this.state.user)
-    //console.log('render user',this.state.user)
-    //console.log('render address',this.state.address)
-    //console.log('render items',this.state.items)
-    /*
-    const itemForm = () => (
-      <Togglable buttonLabel="new item" ref={component => {
-        this.itemForm = component
-      }}>
-        <ItemForm
-          onSubmit={this.addItem}
-          value1={this.state.newItemNimi}
-          value2={this.state.newItemKuva}
-          value3={this.state.newItemHinta}
-          value4={this.state.newItemPaino}
-          value5={this.state.newItemKuvaus}
-          value6={this.state.newItemKategoria}
-          handleChange={this.handleChange}
-        />
-      </Togglable>
-    )
-    */
     return (
       
       <div>
@@ -293,9 +251,6 @@ class App extends React.Component {
           <div>
             <h1>ruokakauppa</h1>
             <Menu user={this.state.user} resetNotification={this.resetNotification}/>
-            {/*<button onClick={this.clear}>clear</button>*/}
-            {/*itemForm()*/}
-    
             <Route exact path="/" render={() =>
               <Redirect to='/kauppa'/>
             } />
