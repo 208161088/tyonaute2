@@ -11,3 +11,4 @@ Sivu pitää ladata uudelleen, jotta näkee että tuote on saapunut. Tuotteet ei
 
 Käyttäjätunnuksia pidetään tietokannassa ja salasanat ovat salattu (encrypted).
 Käyttäjä voi myös poistaa oman käyttäjätunnuksensa.
+Käyttäjä voi vaihtaa salasanaansa ja osoitetta.
