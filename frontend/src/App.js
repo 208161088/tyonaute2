@@ -32,7 +32,8 @@ class App extends React.Component {
       newItemHinta: '',
       newItemPaino: '',
       newItemKuvaus: '',
-      newItemKategoria: ''
+      newItemKategoria: '',
+      timer: null
     }
   }
 
@@ -65,11 +66,11 @@ class App extends React.Component {
   }
 
   notification = (message) => {
-    this.setState({notification: message})
+    clearTimeout(this.state.timer)
     const timer = setTimeout(() => {
       this.setState({ notification: null })
     }, 5000)
-    clearTimeout(timer-1)
+    this.setState({notification: message, timer})
   }
   resetNotification = () => {
     this.setState({notification: null})
@@ -245,7 +246,6 @@ class App extends React.Component {
   }
   render() {
     return (
-      
       <div>
         <Router>
           <div>

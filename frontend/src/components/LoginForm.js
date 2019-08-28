@@ -92,7 +92,7 @@ class LoginForm extends React.Component {
           <div>
             <button onClick={this.toggleLogin}>kirjaudu sisään</button>
             <button onClick={this.toggleRegister}>rekisteröidy</button>
-            <div> Kirjaudu tai rekisteröidy jotta voit tehdä tilauksen</div>
+            <div> Kirjaudu tai rekisteröidy, jotta voit tehdä tilauksen</div>
           </div>
         )
       }

@@ -3,7 +3,7 @@ import Item from './Item'
 const DateParser = ({datestring}) => {
   const date = new Date(datestring)
   const currentDate = Date.now()
-  const arrived = currentDate>date.getTime()+30000 ? 'saapunut' : 'ei saapunut'
+  const arrived = currentDate > date.getTime()+30000 ? 'saapunut' : 'ei saapunut'
   return(
     <div>
       {date.toLocaleString('en-GB')}

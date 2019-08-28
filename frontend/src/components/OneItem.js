@@ -1,12 +1,12 @@
 import React from 'react'
-import Img from 'react-image'
 const OneItem = ({ item, lisaaOstoskoriin}) => {
   return(
     <div>
     <h2>{item.nimi}</h2>
-    <Img
-    src={require('../../images/'+item.kuva+'.jpg')}
+    <img
+	src={require('../../images/'+item.kuva+'.jpg')}
     height="200"
+	alt=""
     />
     <div>{'hinta: '+(item.hinta).toFixed(2)}€</div>
     <div>{'paino: '+item.paino}g</div>

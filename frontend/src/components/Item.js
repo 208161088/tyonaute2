@@ -1,12 +1,12 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import Img from 'react-image'
 const item = ({item}) => (
   <Link to={'/tuote/'+item._id} className='itemLink'>
     <div className='item'>
-      <Img
+      <img
       src={require('../../images/'+item.kuva+'.jpg')}
       height="100"
+	  alt=""
       />
       <div>
       {item.nimi}

@@ -1,45 +1,46 @@
 import React from 'react'
 import OrderHistory from './OrderHistory'
-import Togglable from './Togglable'
+import Toggleable from './Toggleable'
 import ChangeInformationForm from './ChangeInformationForm'
 import ChangePasswordForm from './ChangePasswordForm'
+
 const User = ({ user, address, password, handleChange, onInformationSubmit, onPasswordSubmit, logout, changeAppState, notification, deleteUser, history }) => {
   if (user){
+    let tog1
+    let tog2
+    const togref1 = instance => tog1 = instance
+    const togref2 = instance => tog2 = instance
+    
     const changeInformationFormSubmit = (event) => {
-      this.changeInformationForm.toggleVisibility()
+      tog1.toggleVisibility()
       onInformationSubmit(event, address)
     }
-    const changeInformationForm = () => (
-      <Togglable buttonLabel="muokkaa tietoja" changeAppState={changeAppState} user={user} ref={component => this.changeInformationForm = component}>
-        <ChangeInformationForm
-          address={address}
-          handleChange={handleChange}
-          onSubmit={changeInformationFormSubmit}
-        />
-      </Togglable>
-    )
 
     const changePasswordFormSubmit = (event) => {
-      this.changePasswordForm.toggleVisibility()
+      tog2.toggleVisibility()
       onPasswordSubmit(event)
     }
-    const changePasswordForm = () => (
-      <Togglable buttonLabel="vaihda salasana" ref={component => this.changePasswordForm = component}>
-        <ChangePasswordForm
-          password={password}
-          handleChange={handleChange}
-          onSubmit={changePasswordFormSubmit}
-        />
-      </Togglable>
-    )
 
     return(
       <div>
       <h2>{user.username}</h2>
       <br/>
       osoite: {user.address}
-      {changeInformationForm()}
-      {changePasswordForm()}
+      <Toggleable buttonLabel="muokkaa tietoja" changeAppState={changeAppState} user={user} ref={togref1}>
+        <ChangeInformationForm
+          address={address}
+          handleChange={handleChange}
+          onSubmit={changeInformationFormSubmit}
+        />
+      </Toggleable>
+
+      <Toggleable buttonLabel="vaihda salasana" ref={togref2}>
+        <ChangePasswordForm
+          password={password}
+          handleChange={handleChange}
+          onSubmit={changePasswordFormSubmit}
+        />
+      </Toggleable>
 
       
       <button onClick={()=>logout(history)}>kirjaudu ulos</button>

@@ -7,4 +7,7 @@ Sivustolla voi klikata hiirella tuotteita ja sitten painaa "lisää ostoskoriin"
 Ostoskorissa voi tilata ostoskorissa olevat tuotteet ja sinne pääsee painamalla ostoskori linkkiä. Tuotteiden tilaaminen ei oikeasti maksa mitään.  
 Ainoastaan kirjautuneet käyttäjät voivat tilata tuotteita.  
 Käyttäjä sivulla näkyy tilaushistoria, jossa näkyy onko tuote "saapunut" vai ei. Kaikki tuotteet "saapuvat" 30 sekuntia tilauksen jälkeen.  
-Sivu pitää ladata uudelleen, jotta näkee että tuote on saapunut. Tuotteet eivät oikeasti saavu tai toimiteta minnekkään.  
+Sivu pitää ladata uudelleen, jotta näkee että tuote on saapunut. Tuotteet eivät oikeasti saavu tai toimiteta minnekkään.
+
+Käyttäjätunnuksia pidetään tietokannassa ja salasanat ovat salattu (encrypted).
+Käyttäjä voi myös poistaa oman käyttäjätunnuksensa.
