@@ -1,18 +1,18 @@
 import React from 'react'
-const OneItem = ({ item, lisaaOstoskoriin}) => {
+const OneItem = ({ item, index, lisaaOstoskoriin}) => {
   return(
     <div>
-    <h2>{item.nimi}</h2>
-    <img
-	src={require('../../images/'+item.kuva+'.jpg')}
-    height="200"
-	alt=""
-    />
-    <div>{'hinta: '+(item.hinta).toFixed(2)}€</div>
-    <div>{'paino: '+item.paino}g</div>
-    <div>{'kilohinta '+(item.hinta*1000/item.paino).toFixed(2)}€/kg</div>
-    <button onClick={() => lisaaOstoskoriin(item)}>lisää ostoskoriin</button>
-    <p>{item.kuvaus}</p>
+      <h2>{item.nimi}</h2>
+      <img
+        src={require('../../images/'+item.kuva+'.webp')}
+        className={'oneItemImage'}
+        alt=""
+      />
+      <div>{'hinta: '+(item.hinta).toFixed(2)}€</div>
+      <div>{'paino: '+item.paino}g</div>
+      <div>{'kilohinta '+(item.hinta*1000/item.paino).toFixed(2)}€/kg</div>
+      <button className='oneItemButton' onClick={() => lisaaOstoskoriin(index)}>lisää ostoskoriin</button>
+      <p>{item.kuvaus}</p>
     </div>
   )
 }

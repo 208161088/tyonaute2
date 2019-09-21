@@ -1,22 +1,28 @@
 import React from 'react'
 import Item from './Item'
+
+const tilaaButton = (totalPrice, tilaa, history) => (
+  <div>
+    yhteensä: {totalPrice}€<br/>
+    <button className='tilaaButton' onClick={() => tilaa(history)}>tilaa</button>
+  </div>
+)
+
 const Ostoskori = ({ ostoskori, poistaOstoskorista, tilaa, history, notification}) => {
-  let totalPrice=0
+  const totalPrice = ostoskori.reduce((accumulator, item) => accumulator + item.hinta, 0).toFixed(2)
   return(
     <div>
       <h2>Ostoskori</h2>
+      {ostoskori.length > 4 ? tilaaButton(totalPrice, tilaa, history) : null}
       {ostoskori.map((item, index) => {
-        totalPrice += item.hinta
         return(
           <div key={index} className='itemList'>
-            <Item item={item}/>
-            <button onClick={() => poistaOstoskorista(index)}>poista</button>
+            <Item item={item} itemText='poista ostoskorista' ostoskoriFunction={poistaOstoskorista} index={index}/>
           </div>
         )
       })}
       <br/>
-      yhteensä: {totalPrice.toFixed(2)}€<br/>
-      <button onClick={() => tilaa(history)}>tilaa</button>
+      {tilaaButton(totalPrice, tilaa, history)}
       <div>{notification}</div>
     </div>
   )

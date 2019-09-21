@@ -43,7 +43,7 @@ class LoginForm extends React.Component {
                   onChange={this.props.handleChange}
                 />
               </div>
-              <button type="submit">login</button>
+              <button type="submit">kirjaudu</button>
             </form>
             <button onClick={this.toggleLogin}>takaisin</button>
             <div> {this.props.notification} </div>

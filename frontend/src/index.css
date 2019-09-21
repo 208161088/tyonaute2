@@ -1,11 +1,4 @@
-body {
-  background-color: lightblue;
-}
-
 div {
-  text-align: left;
-  max-width: 500px;
-  margin: auto;
   font-size: 20px;
 }
 
@@ -13,26 +6,105 @@ h1 {
   color: green;
   font-size: 60px;
 }
-
 .item {
-  max-width: 500px;
-  margin: auto;
-  border: 2px solid green
+  display: inline-block;
+  border: 1px solid gray;
+  margin-top: 10px;
+  margin-right: 10px;
+  width: 600px;
+  max-width: 98%;
 }
 
-.itemList {
-  padding-top: 30px;
-}
-
-.item:hover {
-  background-color: lightgray
+.itemInformationText {
+  display: inline-block;
 }
 
 .itemLink {
   color: black;
-  text-decoration: none
+  text-decoration: none;
+  width: 100%;
+  height: 130px;
+}
+
+.itemListButton {
+  padding-top: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 28px;
+  cursor: pointer;
+  background-color: lightblue;
+  height: 130px;
+  width: 130px;
+  float: right;
+}
+
+.itemImage{
+  width: 200px;
+  height: 100px;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+.itemLink:hover {
+  background-color: lightgray
+}
+.itemListButton:hover {
+  background-color: lightsteelblue
+}
+.itemListButton:active {
+  background-color: lightskyblue;
+}
+
+.oneItemImage {
+  height: 200px;
+  max-width: 100%;
+  object-fit: contain;
+}
+.oneItemButton {
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  background-color: lightblue;
+}
+.oneItemButton:hover {
+  background-color: lightsteelblue
+}
+.oneItemButton:active {
+  background-color: lightskyblue;
 }
 
 .haku {
   font-size: 30px;
+  max-width: 100%;
+}
+
+.categoryLink {
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px;
+  background-color: white;
+}
+.categoryLink:hover {
+  background-color: lightgray
+}
+
+.tilaaButton {
+  border: none;
+  background-color: blue;
+  color: white;
+  font-size: 100px;
+}
+
+.tilaaButton:hover {
+  background-color: darkblue;
+}
+
+@media only screen and (max-width: 400px) {
+  h1 {
+    font-size: 50px;
+  }
+  .itemListButton {
+    display: none;
+  }
 }

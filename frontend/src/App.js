@@ -126,7 +126,6 @@ class App extends React.Component {
     }
   }
 
-  
   changeInformation = async (event, address) => {
     event.preventDefault()
     if (address==='') {
@@ -162,30 +161,6 @@ class App extends React.Component {
     history.push('/kauppa')
   }
   
-
-  addItem = async (event) => {
-    event.preventDefault()
-    this.itemForm.toggleVisibility()
-    const itemObject = {
-      nimi: this.state.newItemNimi,
-      kuva: this.state.newItemKuva,
-      hinta: this.state.newItemHinta,
-      paino: this.state.newItemPaino,
-      kuvaus: this.state.newItemKuvaus,
-      kategoria: this.state.newItemKategoria
-    }
-    const newItem = await itemService.create(itemObject)
-    this.setState({
-      items: this.state.items.concat(newItem),
-      newItemNimi: '',
-      newItemKuva: '',
-      newItemHinta: '',
-      newItemPaino: '',
-      newItemKuvaus: '',
-      newItemKategoria: ''
-    })
-  }
-
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value })
   }
@@ -194,16 +169,8 @@ class App extends React.Component {
     this.setState({ [key]: value })
   }
   
-  lisaaOstoskoriin = (currentlyViewedItem) => {
-    const ostoskoriItemObject = {
-      nimi: currentlyViewedItem.nimi,
-      kuva: currentlyViewedItem.kuva,
-      hinta: currentlyViewedItem.hinta,
-      paino: currentlyViewedItem.paino,
-      kuvaus: currentlyViewedItem.kuvaus,
-      _id: currentlyViewedItem._id
-    }
-    const ostoskori = this.state.ostoskori.concat(ostoskoriItemObject)
+  lisaaOstoskoriin = (index) => {
+    const ostoskori = this.state.ostoskori.concat(this.state.items[index])
     window.localStorage.setItem('ostoskori', JSON.stringify(ostoskori))
     this.setState({
       ostoskori
@@ -250,7 +217,7 @@ class App extends React.Component {
         <Router>
           <div>
             <h1>ruokakauppa</h1>
-            <Menu user={this.state.user} resetNotification={this.resetNotification}/>
+            <Menu user={this.state.user} ostoskori={this.state.ostoskori.length ? true : false} resetNotification={this.resetNotification}/>
             <Route exact path="/" render={() =>
               <Redirect to='/kauppa'/>
             } />
@@ -269,6 +236,7 @@ class App extends React.Component {
             <Route exact path="/kauppa" render={() =>
               <ItemList items={this.state.items.filter(item => item.nimi.toLowerCase().includes(this.state.haku.toLowerCase()))}
               title='tuotteet'
+              lisaaOstoskoriin={this.lisaaOstoskoriin}
               />
             } />
             <Route exact path="/kauppa/:category" render={({ match }) => 
@@ -303,6 +271,7 @@ class App extends React.Component {
               notification={this.state.notification}
               deleteUser={this.deleteUser}
               history={history}
+              ostoskoriFunction={this.lisaaOstoskoriin}
               />
             } />
 
@@ -322,13 +291,14 @@ class App extends React.Component {
 
             <Route path="/tuote/:id" render={({ match }) => {
               const items = this.state.items
-              const currentlyViewedItem = items.find(a => a._id === match.params.id)
+              const currentlyViewedItem = items.find(item => item._id === match.params.id)
+              const index = items.findIndex(item => item._id === match.params.id)
               if (items.length > 0) {
                 return (
                   <div>
                     <br/>
                     <CategoryMenu />
-                    <OneItem item={currentlyViewedItem} lisaaOstoskoriin={this.lisaaOstoskoriin}/>
+                    <OneItem item={currentlyViewedItem} index={index} lisaaOstoskoriin={this.lisaaOstoskoriin}/>
                   </div>
                 )
               }

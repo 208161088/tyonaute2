@@ -1,15 +1,15 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-const Menu = ({user, resetNotification}) => {
+const Menu = ({user, ostoskori, resetNotification}) => {
   const linkMaker = (path, content) => (
-    <Link to={path} onClick={resetNotification}>{content}</Link>
+    <Link to={path} className='categoryLink' onClick={resetNotification}>{content}</Link>
   )
   
   const linkToUser = user ? linkMaker('/käyttäjä', user.username) : linkMaker('/kirjaudu', 'kirjaudu/rekisteröidy')
   return(
     <div>
-      {linkMaker('/kauppa', 'kauppa')} &nbsp;
-      {linkMaker('/ostoskori', 'ostoskori')} &nbsp;
+      {linkMaker('/kauppa', 'kauppa')}
+      {ostoskori ? linkMaker('/ostoskori', 'ostoskori') : null}
       {linkToUser}
     </div>
   )
