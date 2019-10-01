@@ -1,7 +1,7 @@
 Sivusto on osoitteessa:
 https://fathomless-ocean-68016.herokuapp.com
 
-Tein tämän sivuston osana datanomi koulutusta. Olen myös muokannut tätä sivustoa sen jälkeen.
+Tein tämän sivuston osana datanomi koulutusta. Olen myös parantanut tätä sivustoa sen jälkeen.
 
 Silloin kun kukaan ei ole käynyt sivustolla vähään aikaan, ja sen jälkeen joku menee sivustolle, niin sitten kestää noin 20 sekuntia ladata sivu.
 
