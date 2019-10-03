@@ -65,15 +65,24 @@ usersRouter.put('/password', async (request, response) => {
   if(!decodedToken){
     return response.status(401).json({ error: 'token missing or invalid' })
   }
-  const body = request.body
-  const saltRounds = 10
-  const passwordHash = await bcrypt.hash(body.password, saltRounds)
 
-  const user = {
-    passwordHash
+  const body = request.body
+  const user = await User.findOne({ username: body.username })
+  const oldPasswordCorrect = user === null
+  ? false
+  : await bcrypt.compare(body.oldPassword, user.passwordHash)
+
+  if (!(user && oldPasswordCorrect)) {
+    return response.status(401).send({ error: 'invalid current password' })
   }
 
-  await User.findByIdAndUpdate(decodedToken.id, user)
+
+  const saltRounds = 10
+  const passwordHash = await bcrypt.hash(body.password, saltRounds)
+  const newUser = {
+    passwordHash
+  }
+  await User.findByIdAndUpdate(decodedToken.id, newUser)
   response.status(204).end()
 })
 

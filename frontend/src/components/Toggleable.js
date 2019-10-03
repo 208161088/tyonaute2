@@ -25,7 +25,7 @@ class Toggleable extends React.Component {
           <div style={hideWhenVisible}>
             <button onClick={this.toggleVisibility}>{this.props.buttonLabel}</button>
           </div>
-          <div style={showWhenVisible}>
+          <div className='toggleable' style={showWhenVisible}>
             {this.props.children}
             <button onClick={this.toggleVisibility}>peruuta</button>
           </div>

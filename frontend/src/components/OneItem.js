@@ -1,5 +1,5 @@
 import React from 'react'
-const OneItem = ({ item, index, lisaaOstoskoriin}) => {
+const OneItem = ({ item, lisaaOstoskoriin}) => {
   return(
     <div>
       <h2>{item.nimi}</h2>
@@ -11,7 +11,7 @@ const OneItem = ({ item, index, lisaaOstoskoriin}) => {
       <div>{'hinta: '+(item.hinta).toFixed(2)}€</div>
       <div>{'paino: '+item.paino}g</div>
       <div>{'kilohinta '+(item.hinta*1000/item.paino).toFixed(2)}€/kg</div>
-      <button className='oneItemButton' onClick={() => lisaaOstoskoriin(index)}>lisää ostoskoriin</button>
+      <button className='oneItemButton' onClick={() => lisaaOstoskoriin(item._id)}>lisää ostoskoriin</button>
       <p>{item.kuvaus}</p>
     </div>
   )

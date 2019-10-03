@@ -20,6 +20,7 @@ class App extends React.Component {
       showAll: true,
       notification: null,
       username: '',
+      oldPassword: '',
       password: '',
       address: '',
       user: null,
@@ -38,10 +39,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    itemService.getAll().then(items =>{
+    itemService.getAll().then(items => {
       this.setState({ items })
-    }
-    )
+    })
     const loggedUserJSON = window.localStorage.getItem('loggedItemAppUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
@@ -143,14 +143,23 @@ class App extends React.Component {
 
   changePassword = async (event) => {
     event.preventDefault()
-    if (this.state.password==='') {
-      this.notification('salasana ei saa olla tyhjä')
-    }else{
-      await userService.changePassword({
-        password: this.state.password
-      })
-      this.setState({ password: '' })
-      this.notification('salasana muutettu')
+    try {
+      if (this.state.password==='') {
+        this.notification('salasana ei saa olla tyhjä')
+      } else {
+        await userService.changePassword({
+          username: this.state.user.username,
+          oldPassword: this.state.oldPassword,
+          password: this.state.password
+        })
+        this.setState({
+          oldPassword: '',
+          password: '',
+        })
+        this.notification('salasana muutettu')
+      }
+    } catch (exception) {
+      this.notification('nykyinen salasana on virheellinen')
     }
   }
 
@@ -169,16 +178,17 @@ class App extends React.Component {
     this.setState({ [key]: value })
   }
   
-  lisaaOstoskoriin = (index) => {
-    const ostoskori = this.state.ostoskori.concat(this.state.items[index])
+  lisaaOstoskoriin = (id) => {
+    const item = this.state.items.find((item) => item._id === id)
+    const ostoskori = this.state.ostoskori.concat(item)
     window.localStorage.setItem('ostoskori', JSON.stringify(ostoskori))
     this.setState({
       ostoskori
     })
   }
 
-  poistaOstoskorista = (index) => {
-    const ostoskori=this.state.ostoskori
+  poistaOstoskorista = (id, index) => {
+    const ostoskori = this.state.ostoskori
     ostoskori.splice(index, 1)
     window.localStorage.setItem('ostoskori', JSON.stringify(ostoskori))
     this.setState({
@@ -244,6 +254,7 @@ class App extends React.Component {
                 <Category
                 items={this.state.items.filter(item => item.nimi.toLowerCase().includes(this.state.haku.toLowerCase()))}
                 category={match.params.category}
+                lisaaOstoskoriin={this.lisaaOstoskoriin}
                 />
               </div>
             } />
@@ -262,7 +273,8 @@ class App extends React.Component {
               <User
               user={this.state.user}
               address={this.state.address}
-              password={this.state.password}
+              oldPassword={this.state.oldPassword}
+              newPassword={this.state.password}
               handleChange={this.handleChange}
               onInformationSubmit={this.changeInformation}
               onPasswordSubmit={this.changePassword}
@@ -271,7 +283,7 @@ class App extends React.Component {
               notification={this.state.notification}
               deleteUser={this.deleteUser}
               history={history}
-              ostoskoriFunction={this.lisaaOstoskoriin}
+              lisaaOstoskoriin={this.lisaaOstoskoriin}
               />
             } />
 
@@ -292,13 +304,12 @@ class App extends React.Component {
             <Route path="/tuote/:id" render={({ match }) => {
               const items = this.state.items
               const currentlyViewedItem = items.find(item => item._id === match.params.id)
-              const index = items.findIndex(item => item._id === match.params.id)
               if (items.length > 0) {
                 return (
                   <div>
                     <br/>
                     <CategoryMenu />
-                    <OneItem item={currentlyViewedItem} index={index} lisaaOstoskoriin={this.lisaaOstoskoriin}/>
+                    <OneItem item={currentlyViewedItem} lisaaOstoskoriin={this.lisaaOstoskoriin}/>
                   </div>
                 )
               }

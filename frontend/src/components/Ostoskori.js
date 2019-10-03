@@ -17,7 +17,7 @@ const Ostoskori = ({ ostoskori, poistaOstoskorista, tilaa, history, notification
       {ostoskori.map((item, index) => {
         return(
           <div key={index} className='itemList'>
-            <Item item={item} itemText='poista ostoskorista' ostoskoriFunction={poistaOstoskorista} index={index}/>
+            <Item item={item} buttonText='poista ostoskorista' ostoskoriFunction={poistaOstoskorista} index={index}/>
           </div>
         )
       })}

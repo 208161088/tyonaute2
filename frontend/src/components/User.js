@@ -4,7 +4,7 @@ import Toggleable from './Toggleable'
 import ChangeInformationForm from './ChangeInformationForm'
 import ChangePasswordForm from './ChangePasswordForm'
 
-const User = ({ user, address, password, handleChange, onInformationSubmit, onPasswordSubmit, logout, changeAppState, notification, deleteUser, history, ostoskoriFunction }) => {
+const User = ({ user, address, oldPassword, newPassword, handleChange, onInformationSubmit, onPasswordSubmit, logout, changeAppState, notification, deleteUser, history, lisaaOstoskoriin }) => {
   if (user){
     let tog1
     let tog2
@@ -36,7 +36,8 @@ const User = ({ user, address, password, handleChange, onInformationSubmit, onPa
 
       <Toggleable buttonLabel="vaihda salasana" ref={togref2}>
         <ChangePasswordForm
-          password={password}
+          oldPassword={oldPassword}
+          newPassword={newPassword}
           handleChange={handleChange}
           onSubmit={changePasswordFormSubmit}
         />
@@ -44,9 +45,10 @@ const User = ({ user, address, password, handleChange, onInformationSubmit, onPa
 
       
       <button onClick={()=>logout(history)}>kirjaudu ulos</button>
+      <br/>
       <button onClick={()=>deleteUser(history)}>poista käyttäjätunnus</button>
       <div>{notification}</div>
-      <OrderHistory orders={user.orderHistory} ostoskoriFunction={ostoskoriFunction}/>
+      <OrderHistory orders={user.orderHistory} lisaaOstoskoriin={lisaaOstoskoriin}/>
     </div>
     )
   }else{

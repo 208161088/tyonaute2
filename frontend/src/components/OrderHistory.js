@@ -12,15 +12,15 @@ const DateParser = ({datestring}) => {
     </div>
   )
 }
-const OrderHistory = ({ orders, ostoskoriFunction }) => (
+const OrderHistory = ({ orders, lisaaOstoskoriin }) => (
   <div>
     <h2>{orders.length?'tilaushistoria':''}</h2>
-    {orders.map((order, index) =>
-      <div key={index}>
-        <Item item={order.orderItem} ostoskoriFunction={ostoskoriFunction} index={index}/>
+    {orders.map((order) =>
+      <div key={order._id}>
+        <Item item={order.orderItem} ostoskoriFunction={lisaaOstoskoriin}/>
         <DateParser datestring={order.date}/>
       </div>
-    )}
+    ).reverse()}
   </div>
 )
 

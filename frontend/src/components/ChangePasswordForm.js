@@ -1,17 +1,27 @@
 import React from 'react'
-const ChangePasswordForm = ({ onSubmit, handleChange, password }) => {
+const ChangePasswordForm = ({ onSubmit, handleChange, oldPassword, newPassword }) => {
     return (
       <div>
         <h3>Vaihda salasana</h3>
         <form onSubmit={onSubmit}>
           <div>
-            uusi salasana
-            <input
-              name="password"
-              value={password}
+            nykyinen salasana
+          </div>
+            <input className='passwordInput'
+              name="oldPassword"
+              value={oldPassword}
               onChange={handleChange}
             />
+          
+          <div>
+            uusi salasana
           </div>
+            <input className='passwordInput'
+              name="password"
+              value={newPassword}
+              onChange={handleChange}
+            />
+          
           <button type="submit">valmis</button>
         </form>
       </div>

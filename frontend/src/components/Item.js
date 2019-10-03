@@ -1,8 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-const item = ({item, itemText, ostoskoriFunction, index}) => (
+const item = ({item, buttonText, ostoskoriFunction, index}) => (
   <div className='item'>
-    <div className='itemListButton' onClick={() => ostoskoriFunction(index)}>{itemText?itemText:'lisää ostoskoriin'}</div>
+    <div className='itemListButton' onClick={() => ostoskoriFunction(item._id, index)}>{buttonText ? buttonText : 'lisää ostoskoriin'}</div>
     <Link to={'/tuote/'+item._id} style={{textDecoration: 'none'}}>
       <div className='itemLink'>
         <img
@@ -18,8 +18,6 @@ const item = ({item, itemText, ostoskoriFunction, index}) => (
         <div>{item.nimi}</div>
       </div>
     </Link>
-    
-
   </div>
 )
 
